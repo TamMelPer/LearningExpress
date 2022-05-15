@@ -1,22 +1,17 @@
 const express = require( 'express' );
-const path = require( 'path' )
-const contact = require(process.cwd() + '/public/contact.json')
+
+const {
+    getHome,
+    getAbout,
+    getContact
+} = require('../../controllers/pages/index.controller')
 
 const router = express.Router()
 
-router.get('/', ( req,res ) => {
-    // res.send('Hello from your friendly Express Server')
-    // Note: send() is only to send HTML response ('Content-Type is set to 'text/html')
-    res.sendFile( path.join( process.cwd(), 'public/index.html' ))
-})
+router.get('/', getHome )
 
-router.get('/about', (req,res) => {
-    // res.send('We will build out the "about" page here')
-    res.sendFile( path.join( process.cwd(), 'public/about.html' ))
-})
+router.get('/about', getAbout)
 
-router.get('/contact', (req,res) => {
-    res.json(contact)
-})
+router.get('/contact', getContact)
 
 module.exports = router;
