@@ -1,4 +1,5 @@
 const path = require( 'path' )
+const { getContactList } = require ('../../services/contact.service')
 
 const getHome = (req, res) => {
     // res.send('Hello from your friendly Express Server')
@@ -13,7 +14,7 @@ const getAbout = (req, res) => {
 
 const getContact = (req, res) => {
     const contact = require(process.cwd() + '/public/contact.json')
-    res.json(contact)
+    res.json(getContactList())
 }
 
 module.exports = {
