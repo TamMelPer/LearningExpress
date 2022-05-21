@@ -1,5 +1,8 @@
 const mongoose = require( 'mongoose');
 
+mongoose.set('returnOriginal', false)
+mongoose.set('runValidators', true)
+
 //set up models
 require( '../models/Post');
 
@@ -11,7 +14,8 @@ if (NODE_ENV === 'development' ) {
    connectionString =  `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
    mongoose.connect( connectionString)
         .then(() => {
-            console.log(`Connected to the DB`)
+            console.log(`Connected to the DB`);
+            require('./seed')
         })
         .catch((error) => {
             console.error( error.message)
