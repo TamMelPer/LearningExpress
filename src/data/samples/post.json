@@ -1,0 +1,6 @@
+{
+    "author": "MP",
+    "title": "Learning Express",
+    "content": "Learn about the need for an application framework when building Node.js apps. Build a basic Node.js application framework. Discover Express and the benefits it brings to application development. Learn about real-world customers who bank on Express for their production apps. Build the very first Express app. Learn to add a route handler for POST requests in your Express application, and learn to use the express-static middleware to serve static assets.",
+    "imageUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fc%2FKnowledgehutglobal%2Fvideos&psig=AOvVaw1JqGJCyLr1RYnoERrjezXS&ust=1653233752867000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCKDq2ef18PcCFQAAAAAdAAAAABAD"
+}
