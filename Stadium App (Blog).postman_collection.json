@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "1980fbee-ef60-4503-93a5-2ec6d2c25709",
+		"name": "Stadium App (Blog)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15543003"
+	},
+	"item": [
+		{
+			"name": "Fetch all posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/posts",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"author\": \"MP\",\n    \"title\": \"Learning Express\",\n    \"content\": \"Learn about the need for an application framework when building Node.js apps. Build a basic Node.js application framework. Discover Express and the benefits it brings to application development. Learn about real-world customers who bank on Express for their production apps. Build the very first Express app. Learn to add a route handler for POST requests in your Express application, and learn to use the express-static middleware to serve static assets.\",\n    \"imageUrl\": \"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fc%2FKnowledgehutglobal%2Fvideos&psig=AOvVaw1JqGJCyLr1RYnoERrjezXS&ust=1653233752867000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCKDq2ef18PcCFQAAAAAdAAAAABAD\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/posts",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Post",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/posts/100000000000000000000001",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"posts",
+						"100000000000000000000001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a post",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"This is a patch: Learn about the need for an application framework when building Node.js apps. Build a basic Node.js application framework. Discover Express and the benefits it brings to application development. Learn about real-world customers who bank on Express for their production apps. Build the very first Express app. Learn to add a route handler for POST requests in your Express application, and learn to use the express-static middleware to serve static assets.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/posts/100000000000000000000001",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"posts",
+						"100000000000000000000001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a post",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/posts/100000000000000000000001",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"posts",
+						"100000000000000000000001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Claps",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/posts/100000000000000000000001/claps?num=5",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"posts",
+						"100000000000000000000001",
+						"claps"
+					],
+					"query": [
+						{
+							"key": "num",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
