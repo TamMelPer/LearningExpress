@@ -2,6 +2,7 @@
 
 require( 'dotenv').config();
 require( './data/connect');
+require('./utils/error');
 const path = require( 'path' );
 const express = require( 'express' );
 const cors = require('cors');
@@ -10,6 +11,8 @@ const morgan = require('morgan');
 const indexPageRouter = require( './routes/pages/index.route')
 const postsPageRouter = require( './routes/pages/posts.route');
 const postsApiRouter = require( './routes/api/posts.route');
+const authApiRouter = require( './routes/api/auth.route');
+
 
 
 //Express Application Object
@@ -34,6 +37,7 @@ app.use( express.static(path.join(process.cwd(), 'public')))
 app.use( express.json()); // returns a middleware, called on every request, checks if the request has a body and if so, it makes it available on req.body
 app.use( indexPageRouter );
 app.use( '/posts', postsPageRouter)
+app.use( '/api/auth', authApiRouter )
 app.use( '/api/posts', postsApiRouter )
 
 app.use( (req,res, next) => {

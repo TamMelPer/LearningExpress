@@ -4,7 +4,10 @@ mongoose.set('returnOriginal', false)
 mongoose.set('runValidators', true)
 
 //set up models
+require( '../models/User');
 require( '../models/Post');
+
+
 
 const { NODE_ENV, DB_HOST, DB_PORT, DB_NAME } = process.env;
 
