@@ -5,7 +5,8 @@ require( './data/connect');
 const path = require( 'path' );
 const express = require( 'express' );
 const cors = require('cors');
-const logger = require( './middleware/logger')
+const morgan = require('morgan');
+// const logger = require( './middleware/logger')
 const indexPageRouter = require( './routes/pages/index.route')
 const postsPageRouter = require( './routes/pages/posts.route');
 const postsApiRouter = require( './routes/api/posts.route');
@@ -17,7 +18,8 @@ const app = express();
 app.set( 'views', path.join(process.cwd(), 'views') );
 app.set( 'view engine', 'ejs' );
 
-app.use(logger);
+app.use(morgan('combined'))
+// app.use(logger);
 // allow only from example.com
 app.use( cors({
     origin: 'http://example.com',
