@@ -36,8 +36,17 @@ app.use( indexPageRouter );
 app.use( '/posts', postsPageRouter)
 app.use( '/api/posts', postsApiRouter )
 
-app.use( (req,res) => {
-    res.send('Page not found')
+app.use( (req,res, next) => {
+    const error = new Error('Page not found');
+    res.send('Page not found');
+
+});
+
+app.use((err, req, res, next) => {
+    res.status(err.statusCode || 500).json({
+        status: 'Error',
+        message: err.message
+    })
 })
 
 app.listen(3000, () => {
