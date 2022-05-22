@@ -1,4 +1,7 @@
 const UserSvc = require('../../services/users.service')
+const CredentialsSchema = require('../../models/Credentials.joi');
+const { getHome } = require('../pages/index.controller');
+const { getHttpError } = require('../../utils/error');
 
 const register = async (req, res, next) => {
     const user = req.body;
@@ -28,7 +31,17 @@ const register = async (req, res, next) => {
 }
 
 const login = async (req, res, next) => {
+    const credentials = req.body;
     
+    if(Object.keys(credentials).length === 0) {
+        return next(getHttpError('You must supply the credentials in the request body', 400))
+    }
+
+    const {error,value} = CredentialsSchema.validate(credentials);
+
+    if (error) {
+        return next(getHttpError(error.message, 400))
+    }
 
 }
 
