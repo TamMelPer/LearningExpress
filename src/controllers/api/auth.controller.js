@@ -1,6 +1,7 @@
 const UserSvc = require('../../services/users.service')
-const CredentialsSchema = require('../../models/Credentials.joi');
-const { getHome } = require('../pages/index.controller');
+const AuthSvc = require('../../services/auth.service')
+const jwt = require('jsonwebtoken');
+
 const { getHttpError } = require('../../utils/error');
 
 const register = async (req, res, next) => {
@@ -37,10 +38,39 @@ const login = async (req, res, next) => {
         return next(getHttpError('You must supply the credentials in the request body', 400))
     }
 
-    const {error,value} = CredentialsSchema.validate(credentials);
+    try {
+        const user = await AuthSvc.userWithCredentialsExists(credentials);
 
-    if (error) {
-        return next(getHttpError(error.message, 400))
+        const claims = {
+            name: user.name,
+            email: user.email,
+            role: user.role
+        }
+
+        jwt.sign(claims, process.env.JWT_SECRET, (error, token) => {
+            if(error){
+                return next(getHttpError('An error accured while issuing the token', 500))
+            }
+            res.json({
+            status: 'success',
+            data: {
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                token
+            }
+            })
+        })
+
+       
+    } catch (error) {
+        if (error.name === 'ValidationError') {
+            return next(getHttpError(error.message, 400))
+        }
+        if (error.name === 'Bad Credentials') {
+            return next(getHttpError(error.message, 401))
+        }
+        return next(getHttpError())
     }
 
 }
