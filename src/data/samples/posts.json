@@ -5,7 +5,7 @@
     "author": "MP",
     "title": "Learning Express",
     "content": "Learn about the need for an application framework when building Node.js apps. Build a basic Node.js application framework. Discover Express and the benefits it brings to application development. Learn about real-world customers who bank on Express for their production apps. Build the very first Express app. Learn to add a route handler for POST requests in your Express application, and learn to use the express-static middleware to serve static assets.",
-    "imageUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fc%2FKnowledgehutglobal%2Fvideos&psig=AOvVaw1JqGJCyLr1RYnoERrjezXS&ust=1653233752867000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCKDq2ef18PcCFQAAAAAdAAAAABAD",
+    "imageUrl": "https://d2o2utebsixu4k.cloudfront.net/blogs/share-image/blog-default-og.png",
     "claps": 20
 },
 {
@@ -15,6 +15,7 @@
     "author": "Melissa",
     "title": "Cluster & Worker Threads",
     "content": "KnowledgeHut's Node.js online course takes you all the way from the basics of Node.js to writing and deploying a complete application using the Express framework. Discover threads and the worker thread API in Node.js. Learn to write CPU intensive code using the worker threads and understand the need for clusters for scaling up a Node.js app. Topics: Introduction to the Worker Threads API, Handling compute-intensive tasks using Worker Threads, Node.js on multi-core CPUs using Cluster",
+    "imageUrl": "https://d2o2utebsixu4k.cloudfront.net/blogs/share-image/blog-default-og.png",
     "claps": 30
 },
 {
@@ -24,6 +25,7 @@
     "author": "Pereira",
     "title": "Web Servers and More",
     "content": "KnowledgeHut's Node.js online course takes you all the way from the basics of Node.js to writing and deploying a complete application using the Express framework. Learning Objectives: Learn all about building servers using the HTTP module. You will also learn about handling incoming requests and sending out responses as you build a web server that serves a static website. Learn all about HTTPS and HTTP/2 and learn to handle Cross-Origin Resource Sharing (CORS).",
+    "imageUrl": "https://d2o2utebsixu4k.cloudfront.net/blogs/share-image/blog-default-og.png",
     "claps": 40
 }
 ]

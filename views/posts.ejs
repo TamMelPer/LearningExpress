@@ -1,0 +1,39 @@
+<%- include("partials/head", { title: title } ) -%>
+  <%- include("partials/menu", {activeLink: activeLink }) -%>
+    <main class="container my-3">
+      <% if( error ) { %>
+                <div class="alert alert-danger"><%= error.message %></div>
+            <% 
+               } else { 
+            %>
+                <div class="row">
+            <%
+                    for( let i = 0; i < posts.length; i++ ) {
+                        const {
+                            _id,
+                            author,
+                            title,
+                            claps,
+                            imageUrl
+                        } = posts[i]
+            %>
+            <div class="col-4">
+                                <div class="card w-100">
+                                    <img src="<%= imageUrl %>" class="card-img-top" alt="<%= title %>">
+                                    <div class="card-body">
+                                    <h5 class="card-title"><%= title %></h5>
+                                    <p class="card-text">Written by <%= author %> &nbsp;&nbsp; <%= claps %> <i class="fa-solid fa-hands-clapping"></i></p>
+                                    <a href="/posts/<%= _id %>" class="btn btn-primary btn-block">Read</a>
+                                    </div>
+                                </div>
+                            </div>
+                        
+            <%
+                    } 
+            %>
+                </div>
+            <%
+              }
+            %>
+    </main>
+<%- include("partials/foot") -%>
