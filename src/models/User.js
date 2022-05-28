@@ -1,4 +1,5 @@
 const mongoose = require( 'mongoose' );
+const bcrypt = require( 'bcrypt');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -31,6 +32,27 @@ userSchema.path( 'password').validate(value => {
     return passwordPattern.test(value)
 }, 'Password must contain at least 8 characters, one uppercase, one lowercase, a digit and a special character.')
 
+const NUM_ROUNDS = 10;
+
+userSchema.pre( 'save', function(done) {
+    const user = this;
+    if(!user.isModified( 'password' )) {
+        return done();
+    }
+
+    bcrypt.genSalt(NUM_ROUNDS, (err, salt) => {
+        if(err) {
+            return done(err);
+        }
+        bcrypt.hash(user.password, salt, (err, hashedPassword) => {
+            if (err) {
+                return done(err);
+            }
+            user.password = hashedPassword;
+            done();
+        })
+    })
+});
 
 const User = mongoose.model( 'User', userSchema );
 
