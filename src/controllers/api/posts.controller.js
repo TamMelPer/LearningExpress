@@ -1,18 +1,10 @@
 const PostsSvc = require('../../services/posts.service');
 const { getHttpError } = require('../../utils/error')
-// const getPosts = ( req, res ) => {
-//     PostsSvc.getPosts()
-//         .then((posts) => {
-//             res.json({
-//             status: 'success',
-//             data: posts
-//             })
-//         .catch(error => {
+const redis = require('redis');
 
-//         })
-    
-//     })
-// };
+const REDIS_PORT = process.env.REDIS_PORT || 6379;
+const client = redis.createClient( REDIS_PORT );
+
 
 //async-await
 const getPosts = async ( req, res ) => {
@@ -45,7 +37,11 @@ const getPostById = async ( req, res, next ) => {
             //     message: 'A post with the given id does not exist'
             // })
         }
+
+        client.setex( `posts:${id}`, 5 * 60, JSON.stringify( post ) );
+
         res.json({
+            message: 'non-cached data',
             status: 'success',
             data: post
         })
