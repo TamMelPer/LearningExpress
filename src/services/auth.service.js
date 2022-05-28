@@ -1,5 +1,6 @@
 const CredentialsSchema = require('../models/Credentials.joi')
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { use } = require('bcrypt/promises');
 const User = mongoose.model('User')
 
 const userWithCredentialsExists = async (credentials) => {
@@ -8,12 +9,23 @@ const userWithCredentialsExists = async (credentials) => {
         throw error
     }
 
-    const user = await User.findOne(credentials)
+    // Step 1: Test Matching Email
+    const user = await User.findOne({
+        email: credentials.email
+    })
 
     if (!user) {
         const error = new Error('Invalid credentials');
         error.name = 'Bad Credentials';
         throw error
+    } else {
+        // Step 2: Test Matching Password
+        try {
+            await user.checkPassword(credentials.password)
+        } catch (error) {
+            throw error
+        }
+
     }
 
     return user;

@@ -54,6 +54,20 @@ userSchema.pre( 'save', function(done) {
     })
 });
 
+userSchema.method( 'checkPassword', function(password) {
+    return new Promise((resolve, reject) => {
+        const user = this;
+        bcrypt.compare( password, user.password, (err, isMatch) => {
+            if(err || !isMatch) {
+                const error = new Error('Bad credentials')
+                error.name = 'Bad Credentials';
+                reject(error);
+            }
+            resolve();
+        })
+    })
+})
+
 const User = mongoose.model( 'User', userSchema );
 
 module.exports = User;
